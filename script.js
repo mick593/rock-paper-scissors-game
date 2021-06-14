@@ -1,3 +1,7 @@
+let playerScore = 0
+let computerScore = 0
+
+
 function counterPlay() {
     let choices = ["rock","paper","scissors"]
     let choose = choices[Math.floor(Math.random() * 3)];
@@ -41,17 +45,80 @@ function play(playerInput, computerInput) {
 
 }
 
+function reset() {
+    playerScore = 0;
+    computerScore = 0;
+    let score = document.getElementById('score')
+    score.textContent = 0
+
+    score = document.getElementById('cmptscore')
+    score.textContent = 0
+}
 // let player = "paper"
 // play(player, counterPlay())
 function writeToPage(msg) {
     document.getElementById("player").innerHTML += "\\n" + msg
     
 }
-let inp = 0
-let playerIn;
-function waitIn() {
 
+const rockBtn = document.querySelector('#rockBtn');
+rockBtn.addEventListener('click', function(e) {
+    if(playerScore >=5 || computerScore >= 5) return
+    let winner = play('rock', counterPlay())
+    updateScore(winner)
 }
+);
+
+const paperBtn = document.querySelector('#paperBtn');
+paperBtn.addEventListener('click', function(e) {
+    if(playerScore >=5 || computerScore >= 5) return
+    let winner = play('paper', counterPlay())
+    updateScore(winner)
+}
+);
+
+const scissorsBtn = document.querySelector('#scissorsBtn');
+scissorsBtn.addEventListener('click', function(e) {
+    if(playerScore >=5 || computerScore >= 5) return
+    let winner = play('scissors', counterPlay())
+    updateScore(winner)
+}
+);
+
+const resetBtn = document.querySelector('#resetBtn');
+resetBtn.addEventListener('click', function(e) {
+    reset()
+}
+);
+
+function updateScore(winner) {
+    if(winner === 'player') {
+        playerScore++;
+        let score = document.getElementById('score')
+        score.textContent = playerScore
+    }
+
+    if(winner === 'computer') {
+        computerScore++;
+        let score = document.getElementById('cmptscore')
+        score.textContent = computerScore
+    }
+
+    if(computerScore >= 5) {
+        const div = document.createElement('div')
+        div.textContent = "Computer Win!  Press restart if you want to play Again!"
+        const board = document.getElementById("scoreBoard")
+        board.appendChild(div)
+    }
+
+    if(playerScore >= 5) {
+        const div = document.createElement('div')
+        div.textContent = "Player Win! Press restart if you want to play Again!"
+        const board = document.getElementById("scoreBoard")
+        board.appendChild(div)
+    }
+}
+
 function rock() {
     playerIn = "rock"
     inp = 1;
@@ -63,7 +130,7 @@ function game() {
     let playerWins = 0;
     let computerWins = 0;
     for(let i = 0; i < 5; i++) {
-        waitIn();
+
         let result = play(playerIn,counterPlay())
         if(result == "player") playerWins++
         else if (result == "computer")computerWins++
@@ -77,3 +144,6 @@ function game() {
         console.log("Draw")
     }
 }
+
+
+

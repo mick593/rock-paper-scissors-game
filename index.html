@@ -1,19 +1,38 @@
 <!DOCTYPE html>
+
+<style>
+    #scoreBoard {
+        background-color: red;
+        
+    }
+</style>
 <html>
+
+
     <title>RPS</title>
-    <script src="script.js"></script>
-    <Head>Rock Paper Scissor (Best of 5)</Head>
+    
+    <Head>Rock Paper Scissor (reach 5 first to win!)</Head>
+    
     <body>
         <div>
             Player 1 
-            <button onclick="HELLO()">rock</button>
-            <button>paper</button>
-            <button>scissors</button>
-        <div id = "player">
-            
-
+            <button id = "rockBtn">rock</button>
+            <button id = "paperBtn">paper</button>
+            <button id = "scissorsBtn">scissors</button>
+            <button id = "resetBtn">reset</button>
+   
         </div>
+
+        <div id = 'scoreBoard'>
+            <div>Player score :</div>
+            <div id = "score">0</div>
+
+            <div>Computer score :</div>
+            <div id = "cmptscore">0</div>
+            
         </div>
     </body>
+
+    <script src="script.js"></script>
     
 </html>>
